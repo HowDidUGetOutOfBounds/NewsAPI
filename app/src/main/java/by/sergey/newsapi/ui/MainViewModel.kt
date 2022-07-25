@@ -8,9 +8,12 @@ import androidx.lifecycle.viewModelScope
 import by.sergey.newsapi.models.Article
 import by.sergey.newsapi.models.Result
 import by.sergey.newsapi.repository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ): ViewModel() {
 
@@ -26,7 +29,7 @@ class MainViewModel @ViewModelInject constructor(
        // set loading, fetch data, set loaded flag
     }
 
-    private fun getNews( title: String,
+    fun getNews( title: String,
                          date: String,
                          size: String,
                          sort: String){
