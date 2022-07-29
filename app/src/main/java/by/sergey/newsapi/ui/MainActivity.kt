@@ -1,19 +1,16 @@
 package by.sergey.newsapi.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import by.sergey.newsapi.R
 import by.sergey.newsapi.databinding.ActivityMainBinding
 import by.sergey.newsapi.models.Result
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -31,6 +28,18 @@ class MainActivity : AppCompatActivity() {
         adapter = NewsAdapter()
         binding.rvNews.layoutManager = LinearLayoutManager(this)
         binding.rvNews.adapter = adapter
+
+
+        binding.searchQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         mainViewModel.isLoading.observe(this){
             if(it)
@@ -56,7 +65,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
 
 
     }

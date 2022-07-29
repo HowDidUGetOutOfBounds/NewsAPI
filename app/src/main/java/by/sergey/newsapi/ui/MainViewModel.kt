@@ -1,6 +1,5 @@
 package by.sergey.newsapi.ui
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import by.sergey.newsapi.models.Article
 import by.sergey.newsapi.models.Result
 import by.sergey.newsapi.repository.MainRepository
+import by.sergey.newsapi.util.DEFAULT_NEWS_SIZE_STRING
+import by.sergey.newsapi.util.DEFAULT_NEWS_SORT_ORDER
+import by.sergey.newsapi.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,10 +31,10 @@ class MainViewModel @Inject constructor(
        // set loading, fetch data, set loaded flag
     }
 
-    fun getNews( title: String,
-                         date: String,
-                         size: String,
-                         sort: String){
+    fun getNews(title: String,
+                         date: String = getCurrentDate(),
+                         size: String = DEFAULT_NEWS_SIZE_STRING,
+                         sort: String = DEFAULT_NEWS_SORT_ORDER){
         viewModelScope.launch {
             _isLoading.postValue(true)
             _response.postValue(mainRepository.getNews(title, date, size, sort))

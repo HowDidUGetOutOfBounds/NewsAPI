@@ -8,5 +8,5 @@ interface ApiHelper {
     suspend fun getNews(title: String,
                         date: String,
                         size: String,
-                        sort: String = "publishedAt"):Result<List<Article>>
+                        sort: String):Result<List<Article>>
 }
