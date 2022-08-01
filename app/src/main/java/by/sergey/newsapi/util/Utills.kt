@@ -12,8 +12,8 @@ const val NEWS_SORT_ORDER_POPULARITY = "popularity"
 const val DEFAULT_NEWS_SORT_ORDER = NEWS_SORT_ORDER_POPULARITY
 /**
  * returns current date as a string with
- * following format: yyyy-dd-MM
+ * following format: yyyy-MM-dd
  */
 fun getCurrentDate(): String {
-    return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-dd-MM"))
+    return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 }

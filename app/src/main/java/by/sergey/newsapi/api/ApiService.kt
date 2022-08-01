@@ -1,6 +1,7 @@
 package by.sergey.newsapi.api
 
 import by.sergey.newsapi.models.Article
+import by.sergey.newsapi.models.Root
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -13,5 +14,5 @@ interface ApiService {
         @Query("pageSize") size: String,
         @Query("sortBy") sort: String,
         @Query("apiKey") key: String
-    ): Response<ArrayList<Article>>
+    ): Response<Root>
 }

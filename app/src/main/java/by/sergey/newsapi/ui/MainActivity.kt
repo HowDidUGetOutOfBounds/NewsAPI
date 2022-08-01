@@ -32,11 +32,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.searchQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
+                if (!query.isNullOrBlank()) {
+                    mainViewModel.getNews(title = query)
+                }
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                TODO("Not yet implemented")
+                return false
             }
 
         })
@@ -44,13 +47,13 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.isLoading.observe(this){
             if(it)
             {
-                binding.rvNews.visibility = View.VISIBLE
-                binding.progress.visibility = View.INVISIBLE
+                binding.rvNews.visibility = View.INVISIBLE
+                binding.progress.visibility = View.VISIBLE
             }
             else
             {
-                binding.rvNews.visibility = View.INVISIBLE
-                binding.progress.visibility = View.VISIBLE
+                binding.rvNews.visibility = View.VISIBLE
+                binding.progress.visibility = View.INVISIBLE
             }
         }
 
@@ -58,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             when(it)
             {
                 is Result.Success -> {
-                    adapter.submitList(it.data)
+                    adapter.submitList(it.data.articles!!)
                 }
                 is Result.Failure -> {
                     Snackbar.make(view, "Something went wrong",Snackbar.LENGTH_SHORT).show()

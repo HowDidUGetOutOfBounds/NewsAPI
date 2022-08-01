@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import by.sergey.newsapi.models.Article
 import by.sergey.newsapi.models.Result
+import by.sergey.newsapi.models.Root
 import by.sergey.newsapi.repository.MainRepository
 import by.sergey.newsapi.util.DEFAULT_NEWS_SIZE_STRING
 import by.sergey.newsapi.util.DEFAULT_NEWS_SORT_ORDER
@@ -20,11 +21,11 @@ class MainViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _isLoading = MutableLiveData<Boolean>()
-    private val _response = MutableLiveData<Result<List<Article>>>()
+    private val _response = MutableLiveData<Result<Root>>()
 
     val isLoading: LiveData<Boolean>
         get() = _isLoading
-    val response: LiveData<Result<List<Article>>>
+    val response: LiveData<Result<Root>>
         get() = _response
 
     init {

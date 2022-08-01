@@ -14,6 +14,12 @@ data class Article(
     val content: String? = null
 )
 
+data class Root(
+    val status: String? = null,
+    val totalResults: Int = 0,
+    val articles: ArrayList<Article>? = null
+)
+
 data class Source(
     val id: Any? = null,
     val name: String? = null
