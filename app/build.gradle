@@ -17,6 +17,8 @@ android {
         versionName "1.0"
 
 
+        buildConfigField "String", "SERVER_BASE_URL", "\"" + getBaseUrl() + "\""
+        buildConfigField "String", "SERVER_API_KEY", "\"" + getAppId() + "\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -83,4 +85,26 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+def getBaseUrl() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String baseUrl = properties.getProperty("SERVER_BASE_URL")
+    if(baseUrl==null)
+        throw new GradleException("Add 'SERVER_BASE_URL' field at local.properties file.")
+
+    return baseUrl
+}
+
+def getAppId() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String appId = properties.getProperty("SERVER_API_KEY")
+    if(appId==null)
+        throw new GradleException("Add 'SERVER_API_KEY' field at local.properties file.")
+
+    return appId
 }
